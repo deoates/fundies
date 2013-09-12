@@ -8,8 +8,8 @@ class Plain implements IPizza {
     String crust;
     String cheese;
     
-    // constructor 
-    public Plain(String crust, String cheese) {
+    // constructor for a Plain
+    Plain(String crust, String cheese) {
         this.crust = crust;
         this.cheese = cheese;
     }
@@ -20,25 +20,28 @@ class Plain implements IPizza {
 class Fancy implements IPizza {
     IPizza base;
     String topping;
-    
-    public Fancy(IPizza base, String topping) {
+   
+    // constructor for a Fancy
+    Fancy(IPizza base, String topping) {
         this.base = base;
         this.topping = topping;
     }
 }
 
 
+// to hold examples for Pizza
 class ExamplesPizza {
+    ExamplesPizza() {} 
     
     // examples for thin crust pizza
-    Plain thinCrustBase = new Plain("thin crust", "mozzarella");
-    Fancy addMushrooms = new Fancy(thinCrustBase, "mushrooms");
-    Fancy order1 = new Fancy(addMushrooms, "olives");
+    IPizza thinCrustBase = new Plain("thin crust", "mozzarella");
+    IPizza addMushrooms = new Fancy(thinCrustBase, "mushrooms");
+    IPizza order1 = new Fancy(addMushrooms, "olives");
     
     // examples for deep dish pizza
-    Plain deepDishBase = new Plain("deep dish", "mixed");
-    Fancy addPepperoni = new Fancy(deepDishBase, "pepperoni");
-    Fancy order2 = new Fancy(addMushrooms, "onions");
+    IPizza deepDishBase = new Plain("deep dish", "mixed");
+    IPizza addPepperoni = new Fancy(deepDishBase, "pepperoni");
+    IPizza order2 = new Fancy(addPepperoni, "onions");
     
 }
 

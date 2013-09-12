@@ -13,7 +13,7 @@ public class Person {
         this.name = name;
         this.yob = yob;
         this.state = state;
-        this.citizen = citizen
+        this.citizen = citizen;
     }
     
     
