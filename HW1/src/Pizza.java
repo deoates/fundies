@@ -31,7 +31,6 @@ class Fancy implements IPizza {
 
 // to hold examples for Pizza
 class ExamplesPizza {
-    ExamplesPizza() {} 
     
     // examples for thin crust pizza
     IPizza thinCrustBase = new Plain("thin crust", "mozzarella");
