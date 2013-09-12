@@ -1,5 +1,7 @@
 
-interface IPizza {}
+// inferface for a pizza
+
+interface IPizza { } 
 
 // to represent a plain pizza
 class Plain implements IPizza {
@@ -26,18 +28,18 @@ class Fancy implements IPizza {
 }
 
 
-// Ð a "deep dish" pizza with "mixed" cheese, with topping of "pepperoni", and "onions"
-
 class ExamplesPizza {
     
     // examples for thin crust pizza
-    IPizza thinCrustBase = new Plain("thin crust", "mozzarella");
-    IPizza addMushrooms = new Fancy(thinCrustBase, "mushrooms");
-    IPizza order1 = new Fancy(addMushrooms, "olives");
+    Plain thinCrustBase = new Plain("thin crust", "mozzarella");
+    Fancy addMushrooms = new Fancy(thinCrustBase, "mushrooms");
+    Fancy order1 = new Fancy(addMushrooms, "olives");
     
     // examples for deep dish pizza
-    IPizza deepDishBase = new Plain("deep dish", "mixed");
-    IPizza addPepperoni = new Fancy(deepDishBase, "pepperoni");
-    IPizza order2 = new Fancy(addMushrooms, "onions");
+    Plain deepDishBase = new Plain("deep dish", "mixed");
+    Fancy addPepperoni = new Fancy(deepDishBase, "pepperoni");
+    Fancy order2 = new Fancy(addMushrooms, "onions");
     
 }
+
+

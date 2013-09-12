@@ -1,5 +1,4 @@
 import tester.*;
-import java.util.*;
 
 // 6 September 2013
 
@@ -13,7 +12,7 @@ class Algorithms {
     // given in pixels per clock tick
     // and the elapsed time, given in clock ticks
     static int carMove(int startLoc, int speed, int timeElapsed) {
-        return startLoc + speed * timeElapsed;                                                               
+        return startLoc + speed * timeElapsed;
     }
     
     // compute the height of the rocket after the next tick, 
@@ -29,18 +28,17 @@ class Algorithms {
     }
     
     static double circleArea(int rad) {
-        return Math.PI*(rad^2);
+        return Math.PI * (rad * rad);
     }
     
     static double circlePerimeter(int rad) {
-       return 2*rad*Math.PI;
+        return 2 * rad * Math.PI;
     }
 } 
 
 // a class to test the functions(methods) 
 // defined in the Algorithms class
 class ExamplesAlgorithms {
-    ExamplesAlgorithms() { }
     
     // test the method carMove:                   
     boolean testCarLoc(Tester t) {
@@ -65,16 +63,17 @@ class ExamplesAlgorithms {
     }
    
     // test the method circleArea
-    boolean testCircleArea(Tester t){
+    boolean testCircleArea(Tester t) {
         return
-        t.checkInexact(Algorithms.circleArea(1), Math.PI*1, 0) &&
-        t.checkInexact(Algorithms.circleArea(2), Math.PI*4, 0);
+        t.checkInexact(Algorithms.circleArea(1), Math.PI * 1, .05) &&
+        t.checkInexact(Algorithms.circleArea(2), Math.PI * 4, .05);
+    }
+ 
+    // test the method CirclePerimeter
+    boolean testCirclePerimeter(Tester t) {
+        return
+        t.checkInexact(Algorithms.circlePerimeter(1), Math.PI * 2, .05) &&
+        t.checkInexact(Algorithms.circlePerimeter(2), Math.PI * 4, .05);
     }
     
-    // test the method CirclePerimeter
-    boolean testCirclePerimeter(Tester t){
-        return
-        t.checkInexact(Algorithms.circlePerimeter(1), Math.PI*2, 0) &&
-        t.checkInexact(Algorithms.circlePerimeter(2), Math.PI*4, 0);
-    }
 }
