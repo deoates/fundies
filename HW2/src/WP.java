@@ -284,7 +284,6 @@ public class WP {
      * Methods for fields:
      * ...this.items.totalImageSizeList()...    --int
      * ...this.title.length()...                --int
-     * ...this.url.length()...                  --int
      * ...this.items.textLengthList()...        --int
      * ...this.items.imagesList()...            --String
      * 
@@ -298,8 +297,8 @@ public class WP {
     
     // compute total number of letters in this web page
     int textLength() {
-        return this.url.length() + this.title.length()
-                                 + this.items.textLengthList();
+        return this.title.length() +
+               this.items.textLengthList();
     }
     
     // return string list of images in this web page
@@ -345,7 +344,6 @@ class ExamplesWP {
     WP monkeyWP = new WP("index.html", "Monkeys Home", this.monkeyWPItems);
     
     
-    
     // provided examples
     
     Item jackiePic = new Image("jackie", 300, "png");
@@ -368,11 +366,10 @@ class ExamplesWP {
                               new ConsLoItem(this.kevinText,
                                 new ConsLoItem(this.kevinPic,
                                   new ConsLoItem(this.bobLink, this.empty)))));
-    
-   
+
     WP myWP = new WP("myfriends.org", "My Friends", this.friendsItems);
-    
-   
+
+
     // tests for method totalImageSize()
     boolean testTotalImageSize(Tester t) {
         return
@@ -398,31 +395,32 @@ class ExamplesWP {
         t.checkExpect(this.empty.totalImageSizeList(), 0) &&
         t.checkExpect(this.bobsFriendsItems.totalImageSizeList(), 300);
     }
-    
-    
+
+
     // tests for method textLength()
     boolean testTextLength(Tester t) {
         return
-        t.checkExpect(this.babyMonkeyPage.textLength(), 49) &&
-        t.checkExpect(this.monkeyPage.textLength(), 92) &&
-        t.checkExpect(this.bobsFriends.textLength(), 50);
+        t.checkExpect(this.babyMonkeyPage.textLength(), 34) &&
+        t.checkExpect(this.monkeyPage.textLength(), 65) &&
+        t.checkExpect(this.bobsFriends.textLength(), 35) &&
+        t.checkExpect(this.myWP.textLength(), 103);
     }
-    
+
     // tests for method textLength()
     boolean testTextLengthList(Tester t) {
         return
         t.checkExpect(this.bobsFriendsItems.textLengthList(), 22) &&
         t.checkExpect(this.babyMonkeyItems.textLengthList(), 15) &&
         t.checkExpect(this.empty.textLengthList(), 0);
-        
     }
-    
+
     // tests for method getTextLength()
     boolean testGetTextLength(Tester t) {
         return
         t.checkExpect(this.jackiePic.getTextLength(), 6) &&
+        t.checkExpect(this.anniePic.getTextLength(), 5) &&
         t.checkExpect(this.kevinText.getTextLength(), 13) &&
-        t.checkExpect(this.babyMonkeyLink.getTextLength(), 65);
+        t.checkExpect(this.babyMonkeyLink.getTextLength(), 50);
         
     }
     
