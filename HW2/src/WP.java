@@ -164,9 +164,8 @@ interface ILoItem {
 // to represent an empty list of items
 class MtLoItem implements ILoItem {
     
-    // empty constructor
     public MtLoItem() {
-        
+        // this is an empty constructor get over yourself Webcat
     }
     
     /* Template
