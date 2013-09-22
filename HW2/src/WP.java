@@ -1,5 +1,7 @@
 import tester.*;
 
+
+// to represent an item on a web page
 interface Item {
    
     // get image size of this item
@@ -13,8 +15,9 @@ interface Item {
     
 }
 
-// to represent text
+// to represent text on a web page
 class Text implements Item {
+    
     String contents;
 
     public Text(String contents) {
@@ -25,6 +28,11 @@ class Text implements Item {
      * 
      * Fields:
      * ...this.contents...              --String
+     * 
+     * Methods:
+     * ...this.getImageSize()...        --int
+     * ...this.getTextLength()...       --int
+     * ...this.getImageTitle()...       --String
      * 
      */
 
@@ -67,6 +75,11 @@ class Image implements Item {
      * ...this.size...                  --int
      * ...this.fileType...              --String
      * 
+     * Methods:
+     * ...this.getImageSize()...        --int
+     * ...this.getTextLength()...       --int
+     * ...this.getImageTitle()...       --String
+     * 
      */
     
     // get image size of this item
@@ -105,6 +118,14 @@ class Link implements Item {
      * ...this.name...               --String
      * ...this.page...               --WP
      * 
+     * Methods:
+     * ...this.getImageSize()...        --int
+     * ...this.getTextLength()...       --int
+     * ...this.getImageTitle()...       --String
+     * 
+     * Methods for fields:
+     * ...this.page.images()...         --String
+     * 
      */
     
     
@@ -142,7 +163,22 @@ interface ILoItem {
 
 // to represent an empty list of items
 class MtLoItem implements ILoItem {
-    public MtLoItem() {}
+    
+    // empty constructor
+    public MtLoItem() {
+        
+    }
+    
+    /* Template
+     * 
+     * Methods:
+     * 
+     * ...this.totalImageSizeList()...         --int
+     * ...this.textLengthList()...             --int
+     * ...this.imagesList()...                 --String
+     * 
+     */
+    
     
     // compute size of all images in this list
     public int totalImageSizeList() {
@@ -162,6 +198,7 @@ class MtLoItem implements ILoItem {
 
 // to represent a non-empty list of items
 class ConsLoItem implements ILoItem {
+    
     Item first;
     ILoItem rest;
     
@@ -175,6 +212,16 @@ class ConsLoItem implements ILoItem {
      * Fields:
      * ...this.first...              --Item
      * ...this.rest...              --ILoItem
+     * 
+     * Methods:
+     * ...this.totalImageSizeList()...         --int
+     * ...this.textLengthList()...             --int
+     * ...this.imagesList()...                 --String
+     * 
+     * Methods for fields:
+     * ...this.first.getImageSize()...         --int
+     * ...this.first.getTextLength()...        --int
+     * ...this.first.getImageTitle()...        --String
      * 
      */
     
@@ -192,11 +239,16 @@ class ConsLoItem implements ILoItem {
     
     // return string of images in this list
     public String imagesList() {
+        
         if (this.rest.imagesList() == "") {
             return this.first.getImageTitle();
-        } else if (this.first.getImageTitle() == "") {
+        }
+        
+        else if (this.first.getImageTitle() == "") {
             return this.rest.imagesList();
-        } else {
+        }
+        
+        else {
             return this.first.getImageTitle() + ", " + this.rest.imagesList();
         }
                 
@@ -206,6 +258,7 @@ class ConsLoItem implements ILoItem {
 
 // to represent a web page
 public class WP {
+    
     String url;
     String title;
     ILoItem items;
@@ -223,6 +276,18 @@ public class WP {
      * ...this.title...             --String
      * ...this.items...             --ILoItems
      * 
+     * Methods:
+     * ...this.totalImageSize()...  --int
+     * ...this.textLength()...      --int
+     * ...this.images()...          --String
+     * 
+     * Methods for fields:
+     * ...this.items.totalImageSizeList()...    --int
+     * ...this.title.length()...                --int
+     * ...this.url.length()...                  --int
+     * ...this.items.textLengthList()...        --int
+     * ...this.items.imagesList()...            --String
+     * 
      */
    
     
@@ -237,6 +302,7 @@ public class WP {
                                  + this.items.textLengthList();
     }
     
+    // return string list of images in this web page
     String images() {
         return this.items.imagesList();
     }
@@ -304,19 +370,19 @@ class ExamplesWP {
                                   new ConsLoItem(this.bobLink, this.empty)))));
     
    
-    WP myFriendsWP = new WP("myfriends.org", "My Friends", this.friendsItems);
+    WP myWP = new WP("myfriends.org", "My Friends", this.friendsItems);
     
    
     // tests for method totalImageSize()
-    boolean testTotalImageSize(Tester t){
+    boolean testTotalImageSize(Tester t) {
         return
-        t.checkExpect(this.myFriendsWP.totalImageSize(), 930) &&
+        t.checkExpect(this.myWP.totalImageSize(), 930) &&
         t.checkExpect(this.monkeyWP.totalImageSize(), 22) &&
         t.checkExpect(this.babyMonkeyPage.totalImageSize(), 0);
     }
     
     // tests for method getImageSize()
-    boolean testGetImageSize(Tester t){
+    boolean testGetImageSize(Tester t) {
         return
         t.checkExpect(this.anniePic.getImageSize(), 230) &&
         t.checkExpect(this.annieText.getImageSize(), 0) &&
@@ -326,7 +392,7 @@ class ExamplesWP {
     }
     
     // tests for method totalImageSizeList()
-    boolean testTotalImageSizeList(Tester t){
+    boolean testTotalImageSizeList(Tester t) {
         return
         t.checkExpect(this.friendsItems.totalImageSizeList(), 930) &&
         t.checkExpect(this.empty.totalImageSizeList(), 0) &&
@@ -340,7 +406,6 @@ class ExamplesWP {
         t.checkExpect(this.babyMonkeyPage.textLength(), 49) &&
         t.checkExpect(this.monkeyPage.textLength(), 92) &&
         t.checkExpect(this.bobsFriends.textLength(), 50);
-        
     }
     
     // tests for method textLength()
@@ -351,7 +416,6 @@ class ExamplesWP {
         t.checkExpect(this.empty.textLengthList(), 0);
         
     }
-    
     
     // tests for method getTextLength()
     boolean testGetTextLength(Tester t) {
@@ -368,7 +432,8 @@ class ExamplesWP {
         t.checkExpect(this.babyMonkeyPage.images(), "") &&
         t.checkExpect(this.monkeyPage.images(), "monkeys2.png") &&
         t.checkExpect(this.monkeyWP.images(), "monkey.jpeg, monkeys2.png") &&
-        t.checkExpect(this.myFriendsWP.images(), "annie.jpeg, kevin.png, jackie.png");
+        t.checkExpect(this.myWP.images(), 
+                                        "annie.jpeg, kevin.png, jackie.png");
     }
     
     // tests for method imagesList()
@@ -376,8 +441,10 @@ class ExamplesWP {
         return
         t.checkExpect(this.babyMonkeyItems.imagesList(), "") &&
         t.checkExpect(this.monkeyPageItems.imagesList(), "monkeys2.png") &&
-        t.checkExpect(this.monkeyWPItems.imagesList(), "monkey.jpeg, monkeys2.png") &&
-        t.checkExpect(this.friendsItems.imagesList(), "annie.jpeg, kevin.png, jackie.png");
+        t.checkExpect(this.monkeyWPItems.imagesList(),
+                                            "monkey.jpeg, monkeys2.png") &&
+        t.checkExpect(this.friendsItems.imagesList(),
+                                        "annie.jpeg, kevin.png, jackie.png");
     }
     
     // tests for method images()
@@ -388,7 +455,5 @@ class ExamplesWP {
         t.checkExpect(this.anniePic.getImageTitle(), "annie.jpeg") &&
         t.checkExpect(this.monkeyCaption.getImageTitle(), "");
     }
-        
-    
     
 }
