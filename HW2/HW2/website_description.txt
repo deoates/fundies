@@ -1,0 +1,19 @@
+
+My website will be located at the URL http://monkeys.com.
+    
+The first thing on the page will be an image. The image is a 10kb jpeg image with the filename monkeys.jpg
+
+The image will have a caption beneath it that describes what the image is "Monkeys at the zoo"
+
+Beneath the caption, there will be a link to the the Monkeys webpage. It will say "Click here for more monkeys"
+
+On the Monkeys webpage, there will be another image of a monkey.
+
+This image will be a 12kb png file with the filename monkeys2.png
+
+Below the image there will be another link called "See baby monkeys" which will go to the baby monkey webpage
+
+On the baby monkey webpage there will be the text "Image not found"
+
+
+

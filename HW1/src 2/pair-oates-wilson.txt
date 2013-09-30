@@ -1,0 +1,9 @@
+// assignment 1
+// pair xxx
+// partner1-David partner1-Oates
+// partner1-oates
+// partner2-Wilson partner2-Roger
+// partner2-rwilson
+
+
+We met during the weekend in the library and worked together on the homework, and then today (Monday) we met in the library again to finish up the tests and clean up the code
