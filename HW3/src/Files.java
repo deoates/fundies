@@ -107,7 +107,7 @@ class ExamplesFiles {
   
   
     // test the method size for the classes that represent files
-    boolean testSize(Tester t){
+    boolean testSize(Tester t) {
         return
         t.checkExpect(this.text1.size(), 1234) &&
         t.checkExpect(this.picture.size(), 80000) &&
@@ -137,6 +137,6 @@ class ExamplesFiles {
         t.checkExpect(this.text2.sameOwner(this.picture2), false) &&
         t.checkExpect(this.picture2.sameOwner(this.song2), false) &&
         t.checkExpect(this.song2.sameOwner(this.song2), true);
-  }
+    }
   
 }
